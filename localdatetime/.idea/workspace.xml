@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d3e90668-9bd7-494d-b52a-a87963ec8f76" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$PROJECT_DIR$/../../devTools/maven/apache-maven-3.6.3" />
+        <option name="userSettingsFile" value="D:\devTools\maven\apache-maven-3.6.3\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="vmOptionsForImporter" value="-Xmx768m" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="MavenRunner">
+    <option name="jreName" value="1.8" />
+  </component>
+  <component name="ProjectId" id="1tbS2IaG223bixEybR1pBLQhUMM" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.38045976" />
+    <property name="settings.editor.selected.configurable" value="File.Encoding" />
+  </component>
+  <component name="RunManager">
+    <configuration name="DateTest.test1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="localdatetime" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="DateTest" />
+      <option name="METHOD_NAME" value="test1" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.DateTest.test1" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d3e90668-9bd7-494d-b52a-a87963ec8f76" name="Default Changelist" comment="" />
+      <created>1623036086597</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1623036086597</updated>
+      <workItem from="1623036087919" duration="2048000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="231" y="54" key="#Project_Structure" timestamp="1623036103343">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state x="231" y="54" key="#Project_Structure/0.0.1500.960@0.0.1500.960" timestamp="1623036103343" />
+    <state width="1458" height="319" key="GridCell.Tab.0.bottom" timestamp="1623047742832">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state width="1458" height="319" key="GridCell.Tab.0.bottom/0.0.1500.960@0.0.1500.960" timestamp="1623047742832" />
+    <state width="1458" height="319" key="GridCell.Tab.0.center" timestamp="1623047742832">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state width="1458" height="319" key="GridCell.Tab.0.center/0.0.1500.960@0.0.1500.960" timestamp="1623047742832" />
+    <state width="1458" height="319" key="GridCell.Tab.0.left" timestamp="1623047742832">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state width="1458" height="319" key="GridCell.Tab.0.left/0.0.1500.960@0.0.1500.960" timestamp="1623047742832" />
+    <state width="1458" height="319" key="GridCell.Tab.0.right" timestamp="1623047742832">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state width="1458" height="319" key="GridCell.Tab.0.right/0.0.1500.960@0.0.1500.960" timestamp="1623047742832" />
+  </component>
+</project>
