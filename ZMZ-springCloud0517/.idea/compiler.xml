@@ -10,6 +10,7 @@
         <module name="cloud-consumer-order-80" />
         <module name="cloud-provider-payment-8002" />
         <module name="cloud-api-commons" />
+        <module name="cloud-consumer-feign-hystrix-order-80" />
         <module name="cloud-provider-payment-8001" />
         <module name="cloud-eureka-server-7002" />
         <module name="cloud-eureka-server-7001" />
