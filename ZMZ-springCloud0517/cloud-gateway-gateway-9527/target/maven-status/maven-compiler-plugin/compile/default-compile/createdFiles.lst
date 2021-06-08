@@ -1,0 +1,3 @@
+com\zmz\springcloud\config\GatewayConfig.class
+com\zmz\springcloud\GatewayMain9527.class
+com\zmz\springcloud\filter\MylocalGatewayFilter.class

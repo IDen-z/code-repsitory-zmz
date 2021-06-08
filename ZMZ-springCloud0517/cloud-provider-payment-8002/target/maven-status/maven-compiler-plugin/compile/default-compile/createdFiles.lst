@@ -1,0 +1,5 @@
+com\zmz\springcloud\controller\PaymentController.class
+com\zmz\springcloud\ProviderPaymentMain8002.class
+com\zmz\springcloud\service\PaymentService.class
+com\zmz\springcloud\serviceImpl\PaymentServiceImpl.class
+com\zmz\springcloud\dao\PaymentDao.class
