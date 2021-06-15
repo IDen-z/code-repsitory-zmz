@@ -21,7 +21,7 @@ spring:
           destination: cloudstudyExchange-zmz # 表示要使用的Exchange名称定义
           content-type: application/json # 设置消息类型，本次为对象json，如果是文本则设置“text/plain”
           binder: defaultRabbit # 设置要绑定的消息服务的具体设置
-          group: cloud-consumer-zmz-A
+          group: cloud-consumer-zmz-A #分组以后默认就开启了持久化，可以避免服务器宕机以后，消息的监听者发生消息丢失的问题
 
 eureka:
   client: # 客户端进行Eureka注册的配置

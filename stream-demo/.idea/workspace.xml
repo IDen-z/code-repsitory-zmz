@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4f67ca90-eaed-45bf-a27d-4d873096886f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../ZMZ-springCloud0517/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ZMZ-springCloud0517/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stream-consumer/src/main/java/com/zmz/consumer/MessageConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/stream-consumer/src/main/java/com/zmz/consumer/MessageConsumer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,6 +111,7 @@
       <workItem from="1622988447420" duration="1329000" />
       <workItem from="1623034004686" duration="354000" />
       <workItem from="1623153745042" duration="1310000" />
+      <workItem from="1623374739597" duration="5059000" />
     </task>
     <servers />
   </component>
