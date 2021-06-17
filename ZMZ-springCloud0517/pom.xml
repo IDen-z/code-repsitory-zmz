@@ -32,6 +32,7 @@
     <module>cloudalibaba-provider-payment-9002</module>
       <module>cloudalibaba-consumer-nacos-order-83</module>
       <module>cloudalibaba-config-nacos-client-3377</module>
+      <module>cloudalibaba-sentinal-service-8401</module>
   </modules>
 
 
