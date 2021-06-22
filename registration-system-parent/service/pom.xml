@@ -13,6 +13,9 @@
 
     <packaging>pom</packaging>
     <version>1.0</version>
+    <modules>
+        <module>service-hospital</module>
+    </modules>
     <dependencies>
         <!--引入自己的api-->
         <dependency>
@@ -47,20 +50,20 @@
             <optional>true</optional>
         </dependency>
         <!-- 服务调用feign -->
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
-        <!-- 服务注册 -->
+        &lt;!&ndash; 服务注册 &ndash;&gt;
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
-        <!-- 流量控制 -->
+        &lt;!&ndash; 流量控制 &ndash;&gt;
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
-        </dependency>
+        </dependency>-->
     </dependencies>
     <build>
         <plugins>
