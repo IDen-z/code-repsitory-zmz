@@ -2,23 +2,21 @@ package com.zmz.yygh.hosp.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zmz.yygh.common.exception.YyghException;
 import com.zmz.yygh.common.result.Result;
-import com.zmz.yygh.common.result.ResultCodeEnum;
 import com.zmz.yygh.common.util.MD5;
-import com.zmz.yygh.hosp.mapper.HospitalSetMapper;
 import com.zmz.yygh.hosp.service.HospitalSetService;
 import com.zmzyygh.model.hosp.HospitalSet;
 import com.zmzyygh.vo.hosp.HospitalSetQueryVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Random;
 
 @RestController
 @RequestMapping("/admin/hosp/hospitalSet")
+@CrossOrigin
 public class HospitalSetControlelr {
 
     //注入service
@@ -70,10 +68,11 @@ public class HospitalSetControlelr {
         String hoscode = hospitalSetQueryVo.getHoscode();
         //调用方法实现分页查询
         //queryWrapper是条件构造器
-        if (!Objects.isNull(hoscode)) {
+        if (!StringUtils.isEmpty(hoscode)) {
+//            注意，这里前端表单提交的时候，如果表单不填写，字符串是空值，不是null
             queryWrapper.eq("hoscode", hoscode);
         }
-        if (!Objects.isNull(hosname)) {
+        if (!StringUtils.isEmpty(hosname)) {
             queryWrapper.like("hosname", hosname);
         }
         Page<HospitalSet> hospitalSetPage = hospitalSetService.page(page, queryWrapper);
