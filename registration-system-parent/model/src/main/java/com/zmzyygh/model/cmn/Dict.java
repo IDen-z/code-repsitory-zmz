@@ -63,6 +63,7 @@ public class Dict {
 
     @ApiModelProperty(value = "是否包含子节点")
     @TableField(exist = false)
+    //这个表示数据库中的字段可以不对应，仅仅为elementUI树形显示提供
     private boolean hasChildren;
 
 }

@@ -15,6 +15,7 @@
     <version>1.0</version>
     <modules>
         <module>service-hospital</module>
+        <module>service-cmn</module>
     </modules>
     <dependencies>
         <!--引入自己的api-->

@@ -6,8 +6,9 @@
         <module>common</module>
         <module>model</module>
         <module>service</module>
-        <module>service-user</module>
         <module>service/service-user</module>
+        <module>common/service-util</module>
+        <module>common/common-util</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
