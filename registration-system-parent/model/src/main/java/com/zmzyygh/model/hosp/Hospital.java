@@ -4,7 +4,10 @@ import com.alibaba.fastjson.JSONObject;
 import com.zmzyygh.model.base.BaseMongoEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -18,12 +21,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 @ApiModel(description = "Hospital")
 @Document("Hospital")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Hospital extends BaseMongoEntity {
 	
 	private static final long serialVersionUID = 1L;
 	
 	@ApiModelProperty(value = "医院编号")
-	@Indexed(unique = true) //唯一索引
+//	@Indexed(unique = true) //唯一索引
 	private String hoscode;
 
 	@ApiModelProperty(value = "医院名称")
