@@ -9,6 +9,7 @@
         <module>service/service-user</module>
         <module>common/service-util</module>
         <module>common/common-util</module>
+        <module>client</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

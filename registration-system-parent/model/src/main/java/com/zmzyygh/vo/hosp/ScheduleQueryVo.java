@@ -2,12 +2,14 @@ package com.zmzyygh.vo.hosp;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Builder;
 import lombok.Data;
 
 import java.util.Date;
 
 @Data
 @ApiModel(description = "Schedule")
+@Builder
 public class ScheduleQueryVo {
 	
 	@ApiModelProperty(value = "医院编号")

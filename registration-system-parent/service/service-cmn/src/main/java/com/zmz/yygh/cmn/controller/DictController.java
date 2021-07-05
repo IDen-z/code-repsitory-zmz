@@ -32,26 +32,49 @@ public class DictController {
 
 
     /**
-    * @Description: 导出数据字典数据接口
-    * @Author: Zhu Mengze
-    * @Date: 2021/6/28 14:41
-    */
+     * @Description: 导出数据字典数据接口
+     * @Author: Zhu Mengze
+     * @Date: 2021/6/28 14:41
+     */
     @GetMapping(value = "/exportData")
-    public void exportDict(HttpServletResponse httpServletResponse){
+    public void exportDict(HttpServletResponse httpServletResponse) {
         dictService.exportDictData(httpServletResponse);
     }
 
     /**
-    * @Description: 上传excel数据进入数据字典
-    * @Author: Zhu Mengze
-    * @Date: 2021/6/28 16:35
-    */
+     * @Description: 上传excel数据进入数据字典
+     * @Author: Zhu Mengze
+     * @Date: 2021/6/28 16:35
+     */
     @PostMapping("importData")
-    public Result importData(MultipartFile file){
+    public Result importData(MultipartFile file) {
         dictService.importDictData(file);
         return Result.ok();
     }
 
+    /**
+     * @Description: 根据dictcode和value查询name
+     * @Author: Zhu Mengze
+     * @Date: 2021/7/5 9:32
+     */
+    @GetMapping(value = "/getName/{dictCode}/{value}")
+    public String getNameByDictCodeAndValue(
+            @PathVariable("dictCode") String dictCode,
+            @PathVariable("value") String value
+    ) {
+        String res = dictService.getNameByDictCodeAndValue(dictCode, value);
+        return res;
+    }
 
+    /**
+     * @Description: 根据value查询name
+     * @Author: Zhu Mengze
+     * @Date: 2021/7/5 9:39
+     */
+    @GetMapping(value = "/getName/{value}")
+    public String getNameByDictValue(@PathVariable("value") String value) {
+        String res = dictService.getNameByValue(value);
+        return res;
+    }
 
 }
