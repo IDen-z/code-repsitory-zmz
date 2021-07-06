@@ -72,5 +72,10 @@ public class ScheduleServiceImpl implements ScheduleService {
         scheduleRepository.delete(schedule);
     }
 
+    @Override
+    public Map<String, Object> getRuleSchedule(Long page, Long limit, String hoscode, String depcode) {
+        return null;
+    }
+
 
 }

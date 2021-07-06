@@ -132,6 +132,22 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements Di
         return dict.getName();
     }
 
+    /**
+    * @Description: 找省市的子节点
+    * @Author: Zhu Mengze
+    * @Date: 2021/7/5 14:32
+    */
+    @Override
+    public List<Dict> findByDictCode(String dictCode) {
+        //根据dictCode获取对应的ID，然后调用本类方法
+        QueryWrapper<Dict> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("dict_code", dictCode);
+        Dict dictByCode = baseMapper.selectOne(queryWrapper);
+
+        List<Dict> childData = this.findChildData(dictByCode.getId());
+        return childData;
+    }
+
 
     /**
      * @Description: 工具方法：判断当前id下面是否有子节点

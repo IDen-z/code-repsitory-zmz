@@ -77,4 +77,17 @@ public class DictController {
         return res;
     }
 
+    /**
+     * @Description: 根据dictCode查询下层节点
+     * @Author: Zhu Mengze
+     * @Date: 2021/7/5 14:15
+     */
+    @GetMapping(value = "/findByDictCode/{dictCode}")
+    public Result<List<Dict>> findByDictCode(
+            @PathVariable String dictCode) {
+        List<Dict> dictList = dictService.findByDictCode(dictCode);
+        return Result.ok(dictList);
+    }
+
+
 }

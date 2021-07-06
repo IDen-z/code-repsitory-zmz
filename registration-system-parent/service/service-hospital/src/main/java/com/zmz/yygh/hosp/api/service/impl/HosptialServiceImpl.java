@@ -1,7 +1,10 @@
 package com.zmz.yygh.hosp.api.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.nacos.api.config.filter.IFilterConfig;
 import com.zmz.yygh.client.cmn.DictFeignProvider;
+import com.zmz.yygh.common.exception.YyghException;
+import com.zmz.yygh.common.result.ResultCodeEnum;
 import com.zmz.yygh.hosp.api.repository.HospitalRepository;
 import com.zmz.yygh.hosp.api.service.HospitalService;
 import com.zmzyygh.model.hosp.Hospital;
@@ -92,6 +95,32 @@ public class HosptialServiceImpl implements HospitalService {
         return hospitalPage;
     }
 
+    @Override
+    public void updateStatus(String id, Integer status) {
+        Hospital hospital = hospitalRepository.findById(id).orElse(null);
+        if (Objects.isNull(hospital)) {
+            throw new YyghException(ResultCodeEnum.PARAM_ERROR);
+        }
+        hospital.setStatus(status);
+        hospital.setUpdateTime(new Date());
+        hospitalRepository.save(hospital);
+    }
+
+    @Override
+    public Map<String, Object> getById(String id) {
+        Hospital hospital = hospitalRepository.findById(id).orElse(null);
+        if (Objects.isNull(hospital)) {
+            throw new YyghException(ResultCodeEnum.PARAM_ERROR);
+        }
+        Map<String, Object> map = new HashMap<>();
+        this.setHospitalHostype(hospital);
+        map.put("hospital", hospital);
+        map.put("bookingRule", hospital.getBookingRule());
+
+        return map;
+    }
+
+
     //获取listj集合，便利进行医院等级set
     private void setHospitalHostype(Hospital hospital) {
         String hostypeString = dictFeignProvider.getNameByDictCodeAndValue("Hostype", hospital.getHostype());
@@ -99,7 +128,7 @@ public class HosptialServiceImpl implements HospitalService {
         String cityString = dictFeignProvider.getNameByDictValue(hospital.getCityCode());
         String districtString = dictFeignProvider.getNameByDictValue(hospital.getDistrictCode());
 
-        hospital.getParam().put("hostypeString",hostypeString);
-        hospital.getParam().put("fullAddress",provinceString+cityString+districtString);
+        hospital.getParam().put("hostypeString", hostypeString);
+        hospital.getParam().put("fullAddress", provinceString + cityString + districtString);
     }
 }

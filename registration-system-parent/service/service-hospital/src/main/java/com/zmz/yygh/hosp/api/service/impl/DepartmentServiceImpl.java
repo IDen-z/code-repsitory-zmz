@@ -3,6 +3,7 @@ package com.zmz.yygh.hosp.api.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.zmz.yygh.common.exception.YyghException;
 import com.zmz.yygh.common.result.ResultCodeEnum;
+import com.zmzyygh.vo.hosp.DepartmentVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import com.zmz.yygh.hosp.api.repository.DepartmentRepository;
@@ -16,9 +17,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
@@ -62,8 +62,8 @@ public class DepartmentServiceImpl implements DepartmentService {
                 .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING)
                 .withIgnoreCase(true);
         //将VO类转为department
-        Department department=new Department();
-        BeanUtils.copyProperties(departmentQueryVo,department);
+        Department department = new Department();
+        BeanUtils.copyProperties(departmentQueryVo, department);
         department.setIsDeleted(0);
         Example<Department> example = Example.of(department, exampleMatcher);
         Page<Department> pageRes = departmentRepository.findAll(example, pageable);
@@ -73,12 +73,48 @@ public class DepartmentServiceImpl implements DepartmentService {
     //删除科室
     @Override
     public void removeDepartment(String hoscode, String depcode) {
-        Department department=departmentRepository.getDepartmentByHoscodeAndDepcode(hoscode,depcode);
+        Department department = departmentRepository.getDepartmentByHoscodeAndDepcode(hoscode, depcode);
         //注意，这里一定要做判断，有可能查询结果为空！
-        if (Objects.isNull(department)){
+        if (Objects.isNull(department)) {
             throw new YyghException(ResultCodeEnum.PARAM_ERROR);
         }
         departmentRepository.delete(department);
+    }
+
+    @Override
+    public List<DepartmentVo> findDeptTree(String hoscode) {
+        Department department = new Department();
+        department.setHoscode(hoscode);
+        Example<Department> example = Example.of(department);
+        List<Department> departmentList = departmentRepository.findAll(example);
+        //以上只是得到了对应hoscode的所有科室信息，但是和前端要求的不同
+        //前端要求的VO是要json类型的树形结构
+        //需要对其进行分组
+        Map<String, List<Department>> listMap = departmentList.stream().collect(Collectors.groupingBy(Department::getBigcode));
+        //分组之后，key为bigcode，
+        List<DepartmentVo> res = new ArrayList<>();
+        for (Map.Entry<String, List<Department>> entry : listMap.entrySet()) {
+
+            String bigcode = entry.getKey();
+
+            List<Department> curentDepList = entry.getValue();
+            DepartmentVo departmentVo = new DepartmentVo();
+            departmentVo.setDepcode(bigcode);
+            departmentVo.setDepname(curentDepList.get(0).getBigname());//get(0)是因为这个list里的所有bigname都相同，所有随便拿一个即可
+            List<DepartmentVo> voListForChildren = new ArrayList<>();
+            //接下来封装这个大科室节点下的所有小科室
+            //也就是DepartmentVo中children，这个children也是一个list集合
+            for (Department childDeptment : curentDepList) {
+                DepartmentVo childDepartmentVo = new DepartmentVo();
+                childDepartmentVo.setDepcode(childDeptment.getDepcode());
+                childDepartmentVo.setDepname(childDeptment.getDepname());
+                voListForChildren.add(childDepartmentVo);
+            }
+            departmentVo.setChildren(voListForChildren);
+            res.add(departmentVo);
+        }
+
+        return res;
     }
 
 
