@@ -117,5 +117,14 @@ public class DepartmentServiceImpl implements DepartmentService {
         return res;
     }
 
+    @Override
+    public String getDepName(String hoscode, String depcode) {
+        Department department = departmentRepository.getDepartmentByHoscodeAndDepcode(hoscode, depcode);
+        if (Objects.isNull(department)){
+            throw new YyghException(ResultCodeEnum.PARAM_ERROR);
+        }
+        return department.getDepname();
+    }
+
 
 }

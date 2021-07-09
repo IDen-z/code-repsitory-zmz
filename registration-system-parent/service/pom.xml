@@ -16,6 +16,7 @@
     <modules>
         <module>service-hospital</module>
         <module>service-cmn</module>
+        <module>service-foruser</module>
     </modules>
     <dependencies>
         <!--引入自己的api-->

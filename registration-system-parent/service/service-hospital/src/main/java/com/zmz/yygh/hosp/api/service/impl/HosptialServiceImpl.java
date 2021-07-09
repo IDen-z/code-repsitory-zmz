@@ -1,7 +1,6 @@
 package com.zmz.yygh.hosp.api.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.nacos.api.config.filter.IFilterConfig;
 import com.zmz.yygh.client.cmn.DictFeignProvider;
 import com.zmz.yygh.common.exception.YyghException;
 import com.zmz.yygh.common.result.ResultCodeEnum;
@@ -13,7 +12,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ObjectUtils;
 
 import java.util.*;
 
@@ -120,8 +118,37 @@ public class HosptialServiceImpl implements HospitalService {
         return map;
     }
 
+    @Override
+    public String getHosName(String hoscode) {
+        Hospital hospital = hospitalRepository.getHospitalByHoscode(hoscode);
+        if (Objects.isNull(hospital)){
+            throw new YyghException(ResultCodeEnum.PARAM_ERROR);
+        }
+        return hospital.getHosname();
+    }
 
-    //获取listj集合，便利进行医院等级set
+    @Override
+    public List<Hospital> likeFindByHosname(String hosname) {
+        return hospitalRepository.findByHosnameLike(hosname);
+    }
+
+    @Override
+    public Map<String, Object> item(String hoscode) {
+        Map<String, Object> result = new HashMap<>();
+        Hospital hospital=this.getByHoscode(hoscode);
+        //医院详情
+        this.setHospitalHostype(hospital);
+        result.put("hospital", hospital);
+        //预约规则
+        result.put("bookingRule", hospital.getBookingRule());
+        //不需要重复返回
+        hospital.setBookingRule(null);
+        return result;
+
+    }
+
+
+    //获取list集合，便利进行医院等级set
     private void setHospitalHostype(Hospital hospital) {
         String hostypeString = dictFeignProvider.getNameByDictCodeAndValue("Hostype", hospital.getHostype());
         String provinceString = dictFeignProvider.getNameByDictValue(hospital.getProvinceCode());

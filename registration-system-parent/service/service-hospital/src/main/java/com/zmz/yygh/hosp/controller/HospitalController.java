@@ -12,7 +12,6 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/admin/hosp/hospital")
-@CrossOrigin
 public class HospitalController {
 
     @Autowired
