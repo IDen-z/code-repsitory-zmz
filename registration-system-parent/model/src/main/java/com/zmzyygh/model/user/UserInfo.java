@@ -5,7 +5,11 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 /**
  * <p>
@@ -17,6 +21,9 @@ import lombok.Data;
 @Data
 @ApiModel(description = "UserInfo")
 @TableName("user_info")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserInfo extends BaseEntity {
 	
 	private static final long serialVersionUID = 1L;
