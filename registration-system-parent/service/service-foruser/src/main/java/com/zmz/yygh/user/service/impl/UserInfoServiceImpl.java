@@ -7,8 +7,11 @@ import com.zmz.yygh.common.helper.JwtHelper;
 import com.zmz.yygh.common.result.ResultCodeEnum;
 import com.zmz.yygh.user.mapper.UserInfoMapper;
 import com.zmz.yygh.user.service.UserInfoService;
+import com.zmzyygh.enums.AuthStatusEnum;
 import com.zmzyygh.model.user.UserInfo;
 import com.zmzyygh.vo.user.LoginVo;
+import com.zmzyygh.vo.user.UserAuthVo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -19,6 +22,7 @@ import java.util.Map;
 import java.util.Objects;
 
 @Service
+@Slf4j
 public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> implements UserInfoService {
 
     @Autowired
@@ -106,6 +110,24 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
     @Override
     public UserInfo getByOpenid(String openid) {
         return baseMapper.selectOne(new QueryWrapper<UserInfo>().eq("openid", openid));
+    }
+
+    @Override
+    public void userAuth(UserAuthVo userAuthVo, Long userId) {
+        //根据用户id查找
+        UserInfo userInfo = baseMapper.selectById(userId);
+        if (Objects.isNull(userInfo)){
+            log.error("查找{}用户失败", userId);
+            throw new YyghException(ResultCodeEnum.LOGIN_MOBLE_ERROR);
+        }
+        userInfo.setAuthStatus(AuthStatusEnum.AUTH_RUN.getStatus());
+        userInfo.setCertificatesNo(userAuthVo.getCertificatesNo());
+        userInfo.setCertificatesType(userAuthVo.getCertificatesType());
+        userInfo.setCertificatesUrl(userAuthVo.getCertificatesUrl());
+        userInfo.setName(userAuthVo.getName());
+        //更新认证状态
+        baseMapper.updateById(userInfo);
+
     }
 
 }
