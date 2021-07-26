@@ -1,6 +1,7 @@
 package com.zmz.yygh.user.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zmz.yygh.common.exception.YyghException;
 import com.zmz.yygh.common.helper.JwtHelper;
@@ -11,6 +12,7 @@ import com.zmzyygh.enums.AuthStatusEnum;
 import com.zmzyygh.model.user.UserInfo;
 import com.zmzyygh.vo.user.LoginVo;
 import com.zmzyygh.vo.user.UserAuthVo;
+import com.zmzyygh.vo.user.UserInfoQueryVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -116,7 +118,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
     public void userAuth(UserAuthVo userAuthVo, Long userId) {
         //根据用户id查找
         UserInfo userInfo = baseMapper.selectById(userId);
-        if (Objects.isNull(userInfo)){
+        if (Objects.isNull(userInfo)) {
             log.error("查找{}用户失败", userId);
             throw new YyghException(ResultCodeEnum.LOGIN_MOBLE_ERROR);
         }
@@ -130,4 +132,52 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
 
     }
 
+    @Override
+    public Page<UserInfo> selectPage(Long page, Long limit, UserInfoQueryVo userInfoQueryVo) {
+        Page<UserInfo> userInfoPage = new Page<>(page, limit);
+        QueryWrapper<UserInfo> queryWrapper = new QueryWrapper<>();
+        if (Objects.nonNull(userInfoQueryVo)) {
+            String name = userInfoQueryVo.getKeyword();
+            Integer authStatus = userInfoQueryVo.getAuthStatus();
+            Integer status = userInfoQueryVo.getStatus();
+            String createTimeBegin = userInfoQueryVo.getCreateTimeBegin(); //开始时间
+            String createTimeEnd = userInfoQueryVo.getCreateTimeEnd(); //结束时间
+            if (!StringUtils.isEmpty(name)) {
+                queryWrapper.like("name", name);
+            }
+            if (!StringUtils.isEmpty(authStatus)) {
+                queryWrapper.eq("auth_status", authStatus);
+            }
+            if (!StringUtils.isEmpty(status)) {
+                queryWrapper.eq("status", status);
+            }
+            if (!StringUtils.isEmpty(createTimeBegin)) {
+                queryWrapper.ge("create_time", createTimeBegin);
+            }
+            if (!StringUtils.isEmpty(createTimeEnd)) {
+                queryWrapper.le("create_time", createTimeEnd);
+            }
+
+        }
+        Page<UserInfo> infoPage = baseMapper.selectPage(userInfoPage, queryWrapper);
+        //编号变成对应值封装
+        infoPage.getRecords().stream().forEach(item -> {
+            this.packageUserInfo(item);
+        });
+        return infoPage;
+    }
+
+    //编号变成对应值封装
+    private UserInfo packageUserInfo(UserInfo userInfo) {
+        //处理认证状态编码
+        userInfo.getParam().put("authStatusString", AuthStatusEnum.getStatusNameByStatus(userInfo.getAuthStatus()));
+        //处理用户状态 0  1
+        String statusString = userInfo.getStatus().intValue() == 0 ? "锁定" : "正常";
+        userInfo.getParam().put("statusString", statusString);
+        return userInfo;
+    }
+
+
 }
+
+

@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface PatientService extends IService<Patient> {
     List<Patient> findAllByUserId(Long userId);
+
+    Patient getPatientId(Long id);
 }

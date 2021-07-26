@@ -1,4 +1,4 @@
-package com.zmz.yygh.user.controller;
+package com.zmz.yygh.user.api;
 
 import com.zmz.yygh.common.result.Result;
 import com.zmz.yygh.common.util.AuthContextHolder;

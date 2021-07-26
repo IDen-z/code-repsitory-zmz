@@ -16,7 +16,7 @@
     <modules>
         <module>service-hospital</module>
         <module>service-cmn</module>
-        <module>service-foruser</module>
+        <module>service-user</module>
         <module>service-msm</module>
         <module>service-oss</module>
     </modules>
