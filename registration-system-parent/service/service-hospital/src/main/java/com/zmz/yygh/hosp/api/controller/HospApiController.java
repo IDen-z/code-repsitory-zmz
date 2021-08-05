@@ -27,6 +27,9 @@ public class HospApiController {
     @Autowired
     private DepartmentService departmentService;
 
+    @Autowired
+    private ScheduleService scheduleService;
+
 
     /**
      * @Description: 提供给用户界面的分页查询医院列表
@@ -75,4 +78,36 @@ public class HospApiController {
         Map<String, Object> map = hospitalService.item(hoscode);
         return Result.ok(map);
     }
+
+
+    /**
+     * @Description: 根据预约周期，展示可预约日期数据，按分页展示
+     * @Author: Zhu Mengze
+     * @Date: 2021/8/5 14:30
+     */
+    @GetMapping("auth/getBookingScheduleRule/{page}/{limit}/{hoscode}/{depcode}")
+    public Result getBookingSchedule(
+            @PathVariable Integer page,
+            @PathVariable Integer limit,
+            @PathVariable String hoscode,
+            @PathVariable String depcode) {
+        Map<String, Object> res = scheduleService.getBookingScheduleRule(page, limit, hoscode, depcode);
+        return Result.ok(res);
+
+    }
+    /**
+    * @Description: 根据医院编号，科室编号，预约日期获取详细排班信息
+    * @Author: Zhu Mengze
+    * @Date: 2021/8/5 14:51
+    */
+    @GetMapping("auth/findScheduleList/{hoscode}/{depcode}/{workDate}")
+    public Result findScheduleList(
+            @PathVariable String hoscode,
+            @PathVariable String depcode,
+            @PathVariable String workDate) {
+        return Result.ok(scheduleService.getDetailSchedule(hoscode, depcode, workDate));
+    }
+
+
+
 }
