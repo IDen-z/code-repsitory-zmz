@@ -7,8 +7,10 @@ import com.zmz.yygh.common.exception.YyghException;
 import com.zmz.yygh.common.helper.JwtHelper;
 import com.zmz.yygh.common.result.ResultCodeEnum;
 import com.zmz.yygh.user.mapper.UserInfoMapper;
+import com.zmz.yygh.user.service.PatientService;
 import com.zmz.yygh.user.service.UserInfoService;
 import com.zmzyygh.enums.AuthStatusEnum;
+import com.zmzyygh.model.user.Patient;
 import com.zmzyygh.model.user.UserInfo;
 import com.zmzyygh.vo.user.LoginVo;
 import com.zmzyygh.vo.user.UserAuthVo;
@@ -20,6 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -29,6 +32,9 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
 
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
+
+    @Autowired
+    private PatientService patientService;
 
     /**
      * @Description: 手机号登陆
@@ -161,18 +167,53 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
         }
         Page<UserInfo> infoPage = baseMapper.selectPage(userInfoPage, queryWrapper);
         //编号变成对应值封装
-        infoPage.getRecords().stream().forEach(item -> {
+        infoPage.getRecords().forEach(item -> {
             this.packageUserInfo(item);
         });
         return infoPage;
     }
+
+    @Override
+    public void lock(Long userId, Integer status) {
+        if (status == 0 || status == 1) {
+            UserInfo userInfo = baseMapper.selectById(userId);
+            userInfo.setStatus(status);
+            baseMapper.updateById(userInfo);
+        }
+    }
+
+    @Override
+    public Map<String, Object> show(Long userId) {
+        UserInfo userInfo = baseMapper.selectById(userId);
+        if (Objects.isNull(userInfo)) {
+            throw new YyghException(ResultCodeEnum.PARAM_ERROR);
+        }
+        UserInfo packageUserInfo = this.packageUserInfo(userInfo);
+        Map<String, Object> map = new HashMap<>();
+        map.put("userInfo", packageUserInfo);
+        //根据userid查询就诊人信息
+        List<Patient> patientList = patientService.findAllByUserId(userId);
+        map.put("patientList", patientList);
+        return map;
+    }
+
+    //认证审批  2通过  -1不通过
+    @Override
+    public void approval(Long userId, Integer authStatus) {
+        if (authStatus == 2 || authStatus == -1) {
+            UserInfo userInfo = baseMapper.selectById(userId);
+            userInfo.setAuthStatus(authStatus);
+            baseMapper.updateById(userInfo);
+        }
+    }
+
 
     //编号变成对应值封装
     private UserInfo packageUserInfo(UserInfo userInfo) {
         //处理认证状态编码
         userInfo.getParam().put("authStatusString", AuthStatusEnum.getStatusNameByStatus(userInfo.getAuthStatus()));
         //处理用户状态 0  1
-        String statusString = userInfo.getStatus().intValue() == 0 ? "锁定" : "正常";
+        String statusString = userInfo.getStatus() == 0 ? "锁定" : "正常";
         userInfo.getParam().put("statusString", statusString);
         return userInfo;
     }

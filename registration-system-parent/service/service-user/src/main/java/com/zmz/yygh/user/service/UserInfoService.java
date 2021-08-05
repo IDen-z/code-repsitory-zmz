@@ -20,4 +20,10 @@ public interface UserInfoService extends IService<UserInfo> {
     void userAuth(UserAuthVo userAuthVo, Long userId);
 
     Page<UserInfo> selectPage(Long page, Long limit, UserInfoQueryVo userInfoQueryVo);
+
+    void lock(Long userId, Integer status);
+
+    Map<String, Object> show(Long userId);
+
+    void approval(Long userId, Integer authStatus);
 }
