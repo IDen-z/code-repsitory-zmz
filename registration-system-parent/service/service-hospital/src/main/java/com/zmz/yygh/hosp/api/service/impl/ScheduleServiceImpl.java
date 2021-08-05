@@ -193,7 +193,7 @@ public class ScheduleServiceImpl implements ScheduleService {
         IPage<Date> iPage = this.getListDate(page, limit, bookingRule);
         List<Date> dateList = iPage.getRecords();
         //获取可预约日期里面科室的剩余预约数
-        Criteria criteria = Criteria.where("hoscode").is(hoscode).and("depcode").is(depcode).and("workTime").in(dateList);
+        Criteria criteria = Criteria.where("hoscode").is(hoscode).and("depcode").is(depcode).and("workDate").in(dateList);
         Aggregation aggregation = Aggregation.newAggregation(
                 Aggregation.match(criteria),
                 Aggregation.group("workDate").first("workDate").as("workDate")
@@ -294,7 +294,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 //        if (end > dateList.size()) {
 //        }
         end = Math.min(end, dateList.size());
-        for (int i = 0; i < end; i++) {
+        for (int i = start; i < end; i++) {
             pageDateList.add(dateList.get(i));
         }
         IPage<Date> iPage = new com.baomidou.mybatisplus.extension.plugins.pagination.Page<>(page, limit, dateList.size());
