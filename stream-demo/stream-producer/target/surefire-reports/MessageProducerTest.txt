@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: MessageProducerTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 13.636 s - in MessageProducerTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.083 s - in MessageProducerTest

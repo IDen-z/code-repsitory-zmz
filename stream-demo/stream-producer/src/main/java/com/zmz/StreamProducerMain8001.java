@@ -7,6 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class StreamProducerMain8001 {
 
     public static void main(String[] args) {
-        SpringApplication.run(StreamProducerMain8001.class,args);
+        SpringApplication.run(StreamProducerMain8001.class, args);
     }
 }
