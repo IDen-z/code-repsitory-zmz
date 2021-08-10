@@ -5,6 +5,7 @@ import com.zmz.yygh.hosp.api.service.DepartmentService;
 import com.zmz.yygh.hosp.api.service.HospitalService;
 import com.zmz.yygh.hosp.api.service.ScheduleService;
 import com.zmzyygh.model.hosp.Hospital;
+import com.zmzyygh.model.hosp.Schedule;
 import com.zmzyygh.vo.hosp.DepartmentVo;
 import com.zmzyygh.vo.hosp.HospitalQueryVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,11 +96,12 @@ public class HospApiController {
         return Result.ok(res);
 
     }
+
     /**
-    * @Description: 根据医院编号，科室编号，预约日期获取详细排班信息
-    * @Author: Zhu Mengze
-    * @Date: 2021/8/5 14:51
-    */
+     * @Description: 根据医院编号，科室编号，预约日期获取详细排班信息
+     * @Author: Zhu Mengze
+     * @Date: 2021/8/5 14:51
+     */
     @GetMapping("auth/findScheduleList/{hoscode}/{depcode}/{workDate}")
     public Result findScheduleList(
             @PathVariable String hoscode,
@@ -108,6 +110,16 @@ public class HospApiController {
         return Result.ok(scheduleService.getDetailSchedule(hoscode, depcode, workDate));
     }
 
+    /**
+     * @Description: 根据ID查询排版信息
+     * @Author: Zhu Mengze
+     * @Date: 2021/8/6 16:24
+     */
+    @GetMapping("getSchedule/{scheduleId}")
+    public Result getSchedule(
+            @PathVariable String scheduleId) {
+        return Result.ok(scheduleService.getById(scheduleId));
+    }
 
 
 }
