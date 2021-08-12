@@ -13,6 +13,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>client-cmn</module>
+        <module>client-user</module>
+        <module>client-hosp</module>
     </modules>
 
 

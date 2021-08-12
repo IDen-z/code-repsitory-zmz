@@ -3,13 +3,19 @@ package com.zmzyygh.vo.hosp;
 import com.baomidou.mybatisplus.annotation.TableField;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
 @ApiModel(description = "Schedule")
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class ScheduleOrderVo {
 
 	@ApiModelProperty(value = "医院编号")

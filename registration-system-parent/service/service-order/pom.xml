@@ -9,14 +9,28 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>service-user</artifactId>
-    <name>service-user</name>
+    <artifactId>service-order</artifactId>
+
     <dependencies>
         <dependency>
             <groupId>com.zmz</groupId>
             <artifactId>client-cmn</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.zmz</groupId>
+            <artifactId>client-hosp</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.zmz</groupId>
+            <artifactId>client-user</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+
     </dependencies>
 
 </project>

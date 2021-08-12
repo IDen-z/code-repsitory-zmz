@@ -4,10 +4,14 @@ import com.zmz.yygh.common.result.Result;
 import com.zmz.yygh.hosp.api.service.DepartmentService;
 import com.zmz.yygh.hosp.api.service.HospitalService;
 import com.zmz.yygh.hosp.api.service.ScheduleService;
+import com.zmz.yygh.hosp.service.HospitalSetService;
 import com.zmzyygh.model.hosp.Hospital;
 import com.zmzyygh.model.hosp.Schedule;
 import com.zmzyygh.vo.hosp.DepartmentVo;
 import com.zmzyygh.vo.hosp.HospitalQueryVo;
+import com.zmzyygh.vo.hosp.ScheduleOrderVo;
+import com.zmzyygh.vo.order.SignInfoVo;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +34,9 @@ public class HospApiController {
 
     @Autowired
     private ScheduleService scheduleService;
+
+    @Autowired
+    private HospitalSetService hospitalSetService;
 
 
     /**
@@ -120,6 +127,31 @@ public class HospApiController {
             @PathVariable String scheduleId) {
         return Result.ok(scheduleService.getById(scheduleId));
     }
+
+    /**
+    * @Description: 根据排班id获取排版信息
+    * @Author: Zhu Mengze
+    * @Date: 2021/8/11 9:50
+    */
+    @GetMapping("inner/getScheduleOrderVo/{scheduleId}")
+    public ScheduleOrderVo getScheduleOrderVo(
+            @PathVariable("scheduleId") String scheduleId) {
+        return scheduleService.getScheduleOrderVo(scheduleId);
+    }
+
+    /**
+    * @Description: 获取医院签名信息
+    * @Author: Zhu Mengze
+    * @Date: 2021/8/12 9:57
+    */
+    @GetMapping("inner/getSignInfoVo/{hoscode}")
+    public SignInfoVo getSignInfoVo(
+            @ApiParam(name = "hoscode", value = "医院code", required = true)
+            @PathVariable("hoscode") String hoscode) {
+        return hospitalSetService.getSignInfoVo(hoscode);
+    }
+
+
 
 
 }

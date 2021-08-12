@@ -15,6 +15,7 @@ import com.zmzyygh.model.hosp.Department;
 import com.zmzyygh.model.hosp.Hospital;
 import com.zmzyygh.model.hosp.Schedule;
 import com.zmzyygh.vo.hosp.BookingScheduleRuleVo;
+import com.zmzyygh.vo.hosp.ScheduleOrderVo;
 import com.zmzyygh.vo.hosp.ScheduleQueryVo;
 import io.swagger.models.auth.In;
 import org.joda.time.DateTime;
@@ -269,14 +270,71 @@ public class ScheduleServiceImpl implements ScheduleService {
 
 
     }
+
     /**
-    *  根据排班ID获取排班数据
-    */
+     * 根据排班ID获取排班数据
+     */
     @Override
     public Schedule getById(String scheduleId) {
         Schedule schedule = scheduleRepository.findById(scheduleId).orElse(null);
         this.packgeSchedule(schedule);
         return schedule;
+    }
+
+    /**
+     * 根据排班id获取排版信息
+     */
+    @Override
+    public ScheduleOrderVo getScheduleOrderVo(String scheduleId) {
+        Schedule schedule = scheduleRepository.findById(scheduleId).orElse(null);
+        if (Objects.isNull(schedule)) {
+            throw new YyghException(ResultCodeEnum.PARAM_ERROR);
+        }
+        //获取预约规则信息
+        Hospital hospital = hospitalService.getByHoscode(schedule.getHoscode());
+        if (null == hospital) {
+            throw new YyghException(ResultCodeEnum.DATA_ERROR);
+        }
+
+        BookingRule bookingRule = hospital.getBookingRule();
+        if (null == bookingRule) {
+            throw new YyghException(ResultCodeEnum.PARAM_ERROR);
+        }
+
+
+        String hoscode = schedule.getHoscode();
+        String depcode = schedule.getDepcode();
+
+
+        //退号时间（如：就诊前一天为-1，当天为0）
+        Integer quitDay = bookingRule.getQuitDay();
+        DateTime quitTime = this.getDateTime(new DateTime(schedule.getWorkDate()).plusDays(quitDay).toDate(), bookingRule.getQuitTime());
+
+        //挂号开始时间
+        DateTime startTime = this.getDateTime(new Date(), bookingRule.getReleaseTime());
+
+        //挂号结束时间
+        DateTime endTime = this.getDateTime(new DateTime().plusDays(bookingRule.getCycle()).toDate(), bookingRule.getStopTime());
+        //当天停止挂号时间
+        DateTime stopTime = this.getDateTime(new Date(), bookingRule.getStopTime());
+
+        ScheduleOrderVo scheduleOrderVo = ScheduleOrderVo.builder().hoscode(hoscode)
+                .hosname(hospital.getHosname())
+                .depcode(depcode)
+                .depname(departmentService.getDepName(hoscode, depcode))
+                .hosScheduleId(scheduleId)
+                .title(schedule.getTitle())
+                .reserveDate(schedule.getWorkDate())
+                .reserveTime(schedule.getWorkTime())
+                .availableNumber(schedule.getAvailableNumber())
+                .amount(schedule.getAmount())
+                .quitTime(quitTime.toDate())
+                .startTime(startTime.toDate())
+                .endTime(endTime.toDate())
+                .stopTime(stopTime.toDate())
+                .build();
+
+        return scheduleOrderVo;
     }
 
     private IPage<Date> getListDate(Integer page, Integer limit, BookingRule bookingRule) {
