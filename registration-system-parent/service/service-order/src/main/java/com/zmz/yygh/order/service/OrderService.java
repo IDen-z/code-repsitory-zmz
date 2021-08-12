@@ -8,7 +8,7 @@ public interface OrderService extends IService<OrderInfo> {
     /**
     *  保存订单
     */
-    Long saveOrder(String scheduleId, Long patientId);
+    OrderInfo saveOrder(String scheduleId, Long patientId);
 
 
 }

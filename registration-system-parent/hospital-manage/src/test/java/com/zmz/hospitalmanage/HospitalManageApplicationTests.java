@@ -3,9 +3,9 @@ package com.zmz.hospitalmanage;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @SpringBootTest
@@ -29,9 +29,13 @@ class HospitalManageApplicationTests {
         System.err.println(collect);
         roleids.addAll(list);
         System.err.println(roleids);
+        System.out.println();
+        System.out.println();
+        String outTradeNo = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")) + ""+ new Random().nextInt(10)+""+ new Random().nextInt(10);
+        String outTradeNo2 = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")) + ""+ new Random().nextInt(10)+""+ new Random().nextInt(10);
 
-
-
+        System.err.println(outTradeNo);
+        System.err.println(outTradeNo2);
 
 
     }

@@ -30,7 +30,7 @@ public class HospitalSetServiceImpl extends ServiceImpl<HospitalSetMapper, Hospi
      */
     @Override
     public SignInfoVo getSignInfoVo(String hoscode) {
-        HospitalSet hospitalSet = baseMapper.selectById(hoscode);
+        HospitalSet hospitalSet = baseMapper.selectOne(new QueryWrapper<HospitalSet>().eq("hoscode",hoscode));
         if (Objects.isNull(hospitalSet)) {
             throw new YyghException(ResultCodeEnum.PARAM_ERROR);
         }
