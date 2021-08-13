@@ -5,6 +5,7 @@ import com.cloopen.rest.sdk.CCPRestSmsSDK;
 import com.zmz.yygh.common.exception.YyghException;
 import com.zmz.yygh.common.result.ResultCodeEnum;
 import com.zmz.yygh.msm.service.MsmService;
+import com.zmzyygh.vo.msm.MsmVo;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -13,7 +14,6 @@ import java.util.Set;
 
 @Service
 public class MsmServiceImpl implements MsmService {
-
 
 
     /**
@@ -31,6 +31,16 @@ public class MsmServiceImpl implements MsmService {
         return true;
     }
 
+    @Override
+    public boolean send(MsmVo msmVo) {
+        if (!StringUtils.isEmpty(msmVo.getPhone())) {
+            String code = (String) msmVo.getParam().get("code");
+            this.send(msmVo.getPhone(), code);
+            return true;
+        }
+        return false;
+    }
+
 
     /**
      * @Description: 容联云短信发送服务
@@ -39,6 +49,7 @@ public class MsmServiceImpl implements MsmService {
      * @Date: 2021/7/13 16:08
      */
     private void send(String phoneNum, String code) {
+        phoneNum="13777899569";
         //生产环境请求地址：app.cloopen.com
         String serverIp = "app.cloopen.com";
         //请求端口

@@ -337,6 +337,13 @@ public class ScheduleServiceImpl implements ScheduleService {
         return scheduleOrderVo;
     }
 
+    @Override
+    public void update(Schedule schedule) {
+        schedule.setUpdateTime(new Date());
+        //主键一致就是更新
+        scheduleRepository.save(schedule);
+    }
+
     private IPage<Date> getListDate(Integer page, Integer limit, BookingRule bookingRule) {
         //获取当天放号时间 年月日 小时 分钟
         DateTime releaseTime = this.getDateTime(new Date(), bookingRule.getReleaseTime());

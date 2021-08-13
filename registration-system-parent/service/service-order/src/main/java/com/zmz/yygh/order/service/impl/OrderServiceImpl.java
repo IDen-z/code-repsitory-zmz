@@ -9,11 +9,14 @@ import com.zmz.yygh.common.exception.YyghException;
 import com.zmz.yygh.common.result.ResultCodeEnum;
 import com.zmz.yygh.common.util.HttpRequestHelper;
 import com.zmz.yygh.order.mapper.OrderInfoMapper;
+import com.zmz.yygh.order.mq.OrderMqService;
 import com.zmz.yygh.order.service.OrderService;
 import com.zmzyygh.enums.OrderStatusEnum;
 import com.zmzyygh.model.order.OrderInfo;
 import com.zmzyygh.model.user.Patient;
 import com.zmzyygh.vo.hosp.ScheduleOrderVo;
+import com.zmzyygh.vo.msm.MsmVo;
+import com.zmzyygh.vo.order.OrderMqVo;
 import com.zmzyygh.vo.order.SignInfoVo;
 import org.joda.time.DateTime;
 import org.springframework.beans.BeanUtils;
@@ -32,6 +35,9 @@ public class OrderServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo> im
 
     @Autowired
     private HospitalFeignProvider hospitalFeignProvider;
+
+    @Autowired
+    private OrderMqService orderMqService;
 
     /**
      * 保存订单
@@ -119,7 +125,36 @@ public class OrderServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo> im
             //排班剩余预约数
             Integer availableNumber = jsonObject.getInteger("availableNumber");
 
-            //TODO 发送mq信息更新号源和短信通知
+            //发送mq信息更新号源和短信通知
+            //发送mq信息更新号源
+            OrderMqVo orderMqVo = new OrderMqVo();
+            orderMqVo.setScheduleId(scheduleId);
+            orderMqVo.setReservedNumber(reservedNumber);
+            orderMqVo.setAvailableNumber(availableNumber);
+
+            //短信提示
+            MsmVo msmVo = new MsmVo();
+            msmVo.setPhone(orderInfo.getPatientPhone());
+            msmVo.setTemplateCode("SMS_194640721");
+
+
+            String reserveDate =
+                    new DateTime(orderInfo.getReserveDate()).toString("yyyy-MM-dd")
+                            + (orderInfo.getReserveTime() == 0 ? "上午" : "下午");
+            Map<String, Object> param = new HashMap<String, Object>() {{
+                put("title", orderInfo.getHosname() + "|" + orderInfo.getDepname() + "|" + orderInfo.getTitle());
+                put("amount", orderInfo.getAmount());
+                put("reserveDate", reserveDate);
+                put("name", orderInfo.getPatientName());
+                put("quitTime", new DateTime(orderInfo.getQuitTime()).toString("yyyy-MM-dd HH:mm"));
+                put("code", "K-000001");
+            }};
+            msmVo.setParam(param);
+            orderMqVo.setMsmVo(msmVo);
+            boolean sendRes = orderMqService.sendOrderMq(orderMqVo);
+            if (!sendRes) {
+                log.error("============下单mq发送失败============");
+            }
 
         } else {
             throw new YyghException(result.getString("message"), ResultCodeEnum.FAIL.getCode());
