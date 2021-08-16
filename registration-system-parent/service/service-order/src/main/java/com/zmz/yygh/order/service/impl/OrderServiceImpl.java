@@ -1,6 +1,9 @@
 package com.zmz.yygh.order.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.google.common.collect.Maps;
 import com.zmz.yygh.client.hosp.HospitalFeignProvider;
@@ -17,15 +20,18 @@ import com.zmzyygh.model.user.Patient;
 import com.zmzyygh.vo.hosp.ScheduleOrderVo;
 import com.zmzyygh.vo.msm.MsmVo;
 import com.zmzyygh.vo.order.OrderMqVo;
+import com.zmzyygh.vo.order.OrderQueryVo;
 import com.zmzyygh.vo.order.SignInfoVo;
 import org.joda.time.DateTime;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class OrderServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo> implements OrderService {
@@ -161,6 +167,61 @@ public class OrderServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo> im
         }
         return orderInfo;
     }
+
+    /**
+     * 分页获取订单列表
+     */
+    @Override
+    public IPage<OrderInfo> selectPage(Long page, Long limit, OrderQueryVo orderQueryVo) {
+        Page<OrderInfo> orderInfoPage = new Page<>(page, limit);
+        //orderQueryVo获取条件值
+        String name = orderQueryVo.getKeyword(); //医院名称
+        Long patientId = orderQueryVo.getPatientId(); //就诊人名称
+        String orderStatus = orderQueryVo.getOrderStatus(); //订单状态
+        String reserveDate = orderQueryVo.getReserveDate();//安排时间
+        String createTimeBegin = orderQueryVo.getCreateTimeBegin();
+        String createTimeEnd = orderQueryVo.getCreateTimeEnd();
+        //对条件值进行非空判断
+        QueryWrapper<OrderInfo> wrapper = new QueryWrapper<>();
+        if (!StringUtils.isEmpty(name)) {
+            wrapper.like("hosname", name);
+        }
+        if (!StringUtils.isEmpty(patientId)) {
+            wrapper.eq("patient_id", patientId);
+        }
+        if (!StringUtils.isEmpty(orderStatus)) {
+            wrapper.eq("order_status", orderStatus);
+        }
+        if (!StringUtils.isEmpty(reserveDate)) {
+            wrapper.ge("reserve_date", reserveDate);
+        }
+        if (!StringUtils.isEmpty(createTimeBegin)) {
+            wrapper.ge("create_time", createTimeBegin);
+        }
+        if (!StringUtils.isEmpty(createTimeEnd)) {
+            wrapper.le("create_time", createTimeEnd);
+        }
+        //map 和 forEach最大的区别就是 map可以设置返回值进而生成一个新的流原有的不发生改变，但是forEach是在原有流的基础上发生改变。
+        Page<OrderInfo> selectPage = baseMapper.selectPage(orderInfoPage, wrapper);
+        List<OrderInfo> collect = selectPage.getRecords().stream().map(orderInfo -> {
+            return this.packOrderInfo(orderInfo);
+        }).collect(Collectors.toList());
+        selectPage.setRecords(collect);
+//        Page<OrderInfo> selectPage = baseMapper.selectPage(orderInfoPage, wrapper);
+//        selectPage.getRecords().forEach(orderInfo -> {
+//           this.packOrderInfo(orderInfo);
+//        });
+        return selectPage;
+    }
+
+    /**
+    *  对应值封装
+    */
+    private OrderInfo packOrderInfo(OrderInfo orderInfo) {
+        orderInfo.getParam().put("orderStatusString", OrderStatusEnum.getStatusNameByStatus(orderInfo.getOrderStatus()));
+        return orderInfo;
+    }
+
 
 }
 

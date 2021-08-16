@@ -2,12 +2,18 @@ package com.zmzyygh.vo.order;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 @Data
 @ApiModel(description = "Order")
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class OrderQueryVo {
 
 
