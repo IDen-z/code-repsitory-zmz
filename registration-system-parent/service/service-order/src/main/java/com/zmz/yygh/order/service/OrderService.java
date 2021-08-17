@@ -14,4 +14,6 @@ public interface OrderService extends IService<OrderInfo> {
 
 
     IPage<OrderInfo> selectPage(Long page, Long limit, OrderQueryVo orderQueryVo);
+
+    OrderInfo getOrder(String orderId);
 }

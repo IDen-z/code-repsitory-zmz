@@ -106,6 +106,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo> im
         paramMap.put("contactsCertificatesNo", patient.getContactsCertificatesNo());
         paramMap.put("contactsPhone", patient.getContactsPhone());
         paramMap.put("timestamp", HttpRequestHelper.getTimestamp());
+        paramMap.put("hosRecordId", scheduleOrderVo.getHosScheduleId());
         String sign = HttpRequestHelper.getSign(paramMap, signInfoVo.getSignKey());
         paramMap.put("sign", sign);
         JSONObject result = HttpRequestHelper.sendRequest(paramMap, signInfoVo.getApiUrl() + "/order/submitOrder");
@@ -212,6 +213,12 @@ public class OrderServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo> im
 //           this.packOrderInfo(orderInfo);
 //        });
         return selectPage;
+    }
+
+    @Override
+    public OrderInfo getOrder(String orderId) {
+        OrderInfo orderInfo = baseMapper.selectById(orderId);
+        return this.packOrderInfo(orderInfo);
     }
 
     /**

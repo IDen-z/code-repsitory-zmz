@@ -55,8 +55,8 @@ public class HospitalServiceImpl implements HospitalService {
         String reserveDate = (String)paramMap.get("reserveDate");
         String reserveTime = (String)paramMap.get("reserveTime");
         String amount = (String)paramMap.get("amount");
-
-        Schedule schedule = this.getSchedule(hosScheduleId);
+        String hosRecordId = (String)paramMap.get("hosRecordId");
+        Schedule schedule = this.getSchedule(hosRecordId);
         if(null == schedule) {
             throw new YyghException(ResultCodeEnum.DATA_ERROR);
         }
@@ -74,7 +74,7 @@ public class HospitalServiceImpl implements HospitalService {
         Long patientId = this.savePatient(patient);
 
         Map<String, Object> resultMap = new HashMap<>();
-        int availableNumber = schedule.getAvailableNumber().intValue() - 1;
+        int availableNumber = schedule.getAvailableNumber() - 1;
         if(availableNumber > 0) {
             schedule.setAvailableNumber(availableNumber);
             hospitalMapper.updateById(schedule);

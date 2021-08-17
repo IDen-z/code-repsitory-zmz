@@ -2,7 +2,6 @@ package com.zmz.yygh.order.controller;
 
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zmz.yygh.common.result.Result;
 import com.zmz.yygh.common.util.AuthContextHolder;
 import com.zmz.yygh.order.service.OrderService;
@@ -33,6 +32,14 @@ public class OrderApiController {
             @PathVariable Long patientId) {
         return Result.ok(orderService.saveOrder(scheduleId, patientId));
     }
+
+    //根据订单id查询订单详情
+    @GetMapping("auth/getOrders/{orderId}")
+    public Result getOrders(@PathVariable String orderId) {
+        OrderInfo orderInfo = orderService.getOrder(orderId);
+        return Result.ok(orderInfo);
+    }
+
 
     /**
     * @Description: 获取订单列表，条件查询加分页
