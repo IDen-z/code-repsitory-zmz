@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b4960a94-0aa8-4cae-bf70-1789772b8ad1" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="D:\devTools\maven\repository" />
+        <option name="mavenHome" value="$PROJECT_DIR$/../../devTools/maven/apache-maven-3.6.3" />
+        <option name="userSettingsFile" value="D:\devTools\maven\apache-maven-3.6.3\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="vmOptionsForImporter" value="-Xmx768m" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="MavenRunner">
+    <option name="jreName" value="1.8" />
+  </component>
+  <component name="ProjectId" id="1y4fyuNSwLuaR7ZCAvwELrt71Pz" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../DiscoveryContrib" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  </component>
+  <component name="RunManager" selected="Application.RemoveDuplicates26">
+    <configuration name="LeetCode1020" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.zmz.leetcode.daily.LeetCode1020" />
+      <module name="leetcode" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zmz.leetcode.daily.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LeetCode1189" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.zmz.leetcode.daily.LeetCode1189" />
+      <module name="leetcode" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zmz.leetcode.daily.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LeetCode1984" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.zmz.leetcode.daily.LeetCode1984" />
+      <module name="leetcode" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zmz.leetcode.daily.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LeetCode2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.zmz.leetcode.hot.LeetCode2" />
+      <module name="leetcode" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zmz.leetcode.hot.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RemoveDuplicates26" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.zmz.leetcode.tag.array1.RemoveDuplicates26" />
+      <module name="leetcode" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.zmz.leetcode.tag.array1.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.RemoveDuplicates26" />
+        <item itemvalue="Application.LeetCode1189" />
+        <item itemvalue="Application.LeetCode1020" />
+        <item itemvalue="Application.LeetCode2" />
+        <item itemvalue="Application.LeetCode1984" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b4960a94-0aa8-4cae-bf70-1789772b8ad1" name="Default Changelist" comment="" />
+      <created>1631516038461</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1631516038461</updated>
+      <workItem from="1631516042845" duration="3194000" />
+      <workItem from="1631580832307" duration="3679000" />
+      <workItem from="1631861980760" duration="1200000" />
+      <workItem from="1644475175679" duration="6778000" />
+      <workItem from="1644540670032" duration="2270000" />
+      <workItem from="1644547348158" duration="6393000" />
+      <workItem from="1644805901056" duration="9880000" />
+      <workItem from="1644976216988" duration="5168000" />
+      <workItem from="1645058200741" duration="4020000" />
+      <workItem from="1645686035268" duration="5392000" />
+      <workItem from="1655256918472" duration="1621000" />
+      <workItem from="1655429768507" duration="14130000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1458" height="52" key="GridCell.Tab.0.bottom" timestamp="1655458624203">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state width="1458" height="52" key="GridCell.Tab.0.bottom/0.0.1500.960@0.0.1500.960" timestamp="1655458624203" />
+    <state width="1458" height="52" key="GridCell.Tab.0.center" timestamp="1655458624203">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state width="1458" height="52" key="GridCell.Tab.0.center/0.0.1500.960@0.0.1500.960" timestamp="1655458624203" />
+    <state width="1458" height="52" key="GridCell.Tab.0.left" timestamp="1655458624203">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state width="1458" height="52" key="GridCell.Tab.0.left/0.0.1500.960@0.0.1500.960" timestamp="1655458624203" />
+    <state width="1458" height="52" key="GridCell.Tab.0.right" timestamp="1655458624203">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state width="1458" height="52" key="GridCell.Tab.0.right/0.0.1500.960@0.0.1500.960" timestamp="1655458624203" />
+    <state width="1458" height="52" key="GridCell.Tab.1.bottom" timestamp="1655458624203">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state width="1458" height="52" key="GridCell.Tab.1.bottom/0.0.1500.960@0.0.1500.960" timestamp="1655458624203" />
+    <state width="1458" height="52" key="GridCell.Tab.1.center" timestamp="1655458624203">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state width="1458" height="52" key="GridCell.Tab.1.center/0.0.1500.960@0.0.1500.960" timestamp="1655458624203" />
+    <state width="1458" height="52" key="GridCell.Tab.1.left" timestamp="1655458624203">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state width="1458" height="52" key="GridCell.Tab.1.left/0.0.1500.960@0.0.1500.960" timestamp="1655458624203" />
+    <state width="1458" height="52" key="GridCell.Tab.1.right" timestamp="1655458624203">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state width="1458" height="52" key="GridCell.Tab.1.right/0.0.1500.960@0.0.1500.960" timestamp="1655458624203" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/zmz/leetcode/daily/LeetCode1984.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/zmz/leetcode/daily/LeetCode1020.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

@@ -14,7 +14,7 @@ public class MessageConsumer {
         System.err.println(Thread.currentThread().getName());
         System.err.println("消费者接受的message" + message);
         int i = 0;
-        while (true){
+        while (true) {
             System.out.println("消费者： " + i++);
             if (i == 10) {
                 break;

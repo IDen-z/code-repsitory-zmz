@@ -18,7 +18,7 @@ spring:
           destination: stream.message.zmz #绑定交换机的名字
         input:
           destination: stream.message.zmz #绑定交换机的名字
-
+          group: stream
 
 #eureka:
 #  client:

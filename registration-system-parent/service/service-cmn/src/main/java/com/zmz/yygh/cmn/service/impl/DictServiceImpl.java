@@ -114,7 +114,7 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements Di
             Long pid = dictByCode.getId();
             Dict dict = baseMapper.selectOne(new QueryWrapper<Dict>()
                     .eq("parent_id", pid)
-                    .eq("value",value));
+                    .eq("value", value));
             return dict.getName();
         }
 
@@ -133,10 +133,10 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements Di
     }
 
     /**
-    * @Description: 找省市的子节点
-    * @Author: Zhu Mengze
-    * @Date: 2021/7/5 14:32
-    */
+     * @Description: 找省市的子节点
+     * @Author: Zhu Mengze
+     * @Date: 2021/7/5 14:32
+     */
     @Override
     public List<Dict> findByDictCode(String dictCode) {
         //根据dictCode获取对应的ID，然后调用本类方法

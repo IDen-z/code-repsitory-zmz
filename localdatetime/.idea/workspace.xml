@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d3e90668-9bd7-494d-b52a-a87963ec8f76" name="Default Changelist" comment="" />
+    <list default="true" id="d3e90668-9bd7-494d-b52a-a87963ec8f76" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/test/java/DateTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/DateTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stream-demo/stream-producer/src/main/java/com/zmz/consumer/MessageConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../stream-demo/stream-producer/src/main/java/com/zmz/consumer/MessageConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stream-demo/stream-producer/src/main/java/com/zmz/producer/MessageProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../stream-demo/stream-producer/src/main/java/com/zmz/producer/MessageProducer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../stream-demo/stream-producer/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../stream-demo/stream-producer/src/main/resources/application.yml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,6 +18,9 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -31,6 +39,7 @@
     <option name="jreName" value="1.8" />
   </component>
   <component name="ProjectId" id="1tbS2IaG223bixEybR1pBLQhUMM" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
@@ -39,6 +48,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.38045976" />
@@ -72,6 +82,9 @@
       <option name="presentableId" value="Default" />
       <updated>1623036086597</updated>
       <workItem from="1623036087919" duration="2048000" />
+      <workItem from="1629772644308" duration="250000" />
+      <workItem from="1631081560040" duration="980000" />
+      <workItem from="1631185065798" duration="1578000" />
     </task>
     <servers />
   </component>
@@ -83,21 +96,48 @@
       <screen x="0" y="0" width="1500" height="960" />
     </state>
     <state x="231" y="54" key="#Project_Structure/0.0.1500.960@0.0.1500.960" timestamp="1623036103343" />
-    <state width="1458" height="319" key="GridCell.Tab.0.bottom" timestamp="1623047742832">
+    <state width="1458" height="382" key="GridCell.Tab.0.bottom" timestamp="1631190850169">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="319" key="GridCell.Tab.0.bottom/0.0.1500.960@0.0.1500.960" timestamp="1623047742832" />
-    <state width="1458" height="319" key="GridCell.Tab.0.center" timestamp="1623047742832">
+    <state width="1458" height="382" key="GridCell.Tab.0.bottom/0.0.1500.960@0.0.1500.960" timestamp="1631190850169" />
+    <state width="1458" height="382" key="GridCell.Tab.0.center" timestamp="1631190850169">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="319" key="GridCell.Tab.0.center/0.0.1500.960@0.0.1500.960" timestamp="1623047742832" />
-    <state width="1458" height="319" key="GridCell.Tab.0.left" timestamp="1623047742832">
+    <state width="1458" height="382" key="GridCell.Tab.0.center/0.0.1500.960@0.0.1500.960" timestamp="1631190850169" />
+    <state width="1458" height="382" key="GridCell.Tab.0.left" timestamp="1631190850169">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="319" key="GridCell.Tab.0.left/0.0.1500.960@0.0.1500.960" timestamp="1623047742832" />
-    <state width="1458" height="319" key="GridCell.Tab.0.right" timestamp="1623047742832">
+    <state width="1458" height="382" key="GridCell.Tab.0.left/0.0.1500.960@0.0.1500.960" timestamp="1631190850169" />
+    <state width="1458" height="382" key="GridCell.Tab.0.right" timestamp="1631190850169">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1458" height="319" key="GridCell.Tab.0.right/0.0.1500.960@0.0.1500.960" timestamp="1623047742832" />
+    <state width="1458" height="382" key="GridCell.Tab.0.right/0.0.1500.960@0.0.1500.960" timestamp="1631190850169" />
+    <state width="1458" height="382" key="GridCell.Tab.1.bottom" timestamp="1631190850169">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state width="1458" height="382" key="GridCell.Tab.1.bottom/0.0.1500.960@0.0.1500.960" timestamp="1631190850169" />
+    <state width="1458" height="382" key="GridCell.Tab.1.center" timestamp="1631190850169">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state width="1458" height="382" key="GridCell.Tab.1.center/0.0.1500.960@0.0.1500.960" timestamp="1631190850169" />
+    <state width="1458" height="382" key="GridCell.Tab.1.left" timestamp="1631190850169">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state width="1458" height="382" key="GridCell.Tab.1.left/0.0.1500.960@0.0.1500.960" timestamp="1631190850169" />
+    <state width="1458" height="382" key="GridCell.Tab.1.right" timestamp="1631190850169">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state width="1458" height="382" key="GridCell.Tab.1.right/0.0.1500.960@0.0.1500.960" timestamp="1631190850169" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/DateTest.java</url>
+          <line>35</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

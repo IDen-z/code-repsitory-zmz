@@ -8,6 +8,8 @@ spring:
     nacos:
       discovery:
         server-addr: localhost:8848 #配置Nacos地址
+        metadata:
+          version: 1.2.0
 
 management:
   endpoints:
