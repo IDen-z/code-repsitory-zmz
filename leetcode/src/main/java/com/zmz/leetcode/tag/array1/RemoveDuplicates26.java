@@ -16,19 +16,21 @@ public class RemoveDuplicates26 {
      */
     public int removeDuplicates(int[] nums) {
         int res = 1;
+        if (nums.length==0){
+            return 0;
+        }
         // 快慢指针
         // 一个快指针 一个慢指针
-        int slowIndex = 0;
-        int fastIndex = 0;
+        int slowIndex = 1;
+        int fastIndex = 1;
         while (fastIndex <= nums.length - 1) {
-            if (nums[slowIndex] <= nums[slowIndex + 1]) {
-                fastIndex++;
+            if (nums[fastIndex] != nums[fastIndex - 1]) {
+                nums[slowIndex]=nums[fastIndex];
+                slowIndex++;
             }
-
+            fastIndex++;
         }
-
-
-        return res;
+        return slowIndex;
     }
 
     public static void main(String[] args) {
